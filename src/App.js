@@ -1,28 +1,37 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import gql from 'graphql-tag'
+import { Query } from 'react-apollo'
+import './App.css'
+
+const fetchPosts = gql`
+  query fetchPosts {
+    allPosts {
+      id
+      description
+      imageUrl
+    }
+  }
+`
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+      <Query query={fetchPosts}>
+        {({ loading, error, data }) => {
+          if (loading) return 'Loading...'
+          if (error) return 'Error...'
+        
+          return (
+            <div className="App">
+              {data.allPosts.map(post => (
+                <div key={post.id}>{post.description}</div>
+              ))}
+            </div>
+          )
+        }}
+      </Query>
+    )
   }
 }
 
-export default App;
+export default App
