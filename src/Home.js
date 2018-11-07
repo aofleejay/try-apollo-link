@@ -18,6 +18,9 @@ const Home = () => (
       <li>
         <Link to="/apollo-link-error">apollo-link-error</Link>
       </li>
+      <li>
+        <Link to="/apollo-link-retry">apollo-link-retry</Link>
+      </li>
     </ul>
   </div>
 )

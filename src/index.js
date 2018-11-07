@@ -8,6 +8,7 @@ import { HttpLink } from 'apollo-link-http'
 import { RestLink } from 'apollo-link-rest'
 import { withClientState } from 'apollo-link-state'
 import { onError } from 'apollo-link-error'
+import { RetryLink } from 'apollo-link-retry'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 import {
@@ -58,10 +59,12 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (networkError) console.log(`[Network error]: ${networkError}`)
 })
 
+const retryLink = new RetryLink()
+
 const httpLink = new HttpLink({ uri: GRAPHQL_ENDPOINT })
 
 const client = new ApolloClient({
-  link: ApolloLink.from([logLink, stateLink, RESTLink, errorLink, httpLink]),
+  link: ApolloLink.from([logLink, stateLink, RESTLink, errorLink, retryLink, httpLink]),
   cache,
 })
 
