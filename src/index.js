@@ -7,16 +7,15 @@ import { HttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { ApolloLink } from 'apollo-link'
 import { withClientState } from 'apollo-link-state'
-import './index.css'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 
 const cache = new InMemoryCache()
 
 const logLink = new ApolloLink((operation , forward) => {
-  console.log(`starting request for ${operation.operationName}`)
+  console.log(`Starting request for ${operation.operationName}.`)
   return forward(operation).map((data) => {
-    console.log(`ending request for ${operation.operationName}`)
+    console.log(`Ending request for ${operation.operationName}.`)
     return data
   })
 })
@@ -29,7 +28,6 @@ const stateLink = withClientState({
   resolvers: {
     Mutation: {
       setLanguage: (_, { language }, { cache }) => {
-        console.log('l', language)
         cache.writeData({ data: { language } })
         return null
       }
