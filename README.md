@@ -1,2 +1,2 @@
 # Try-apollo-link
-Repository for practice about machine learning.
+Repository for practice about apollo link.
