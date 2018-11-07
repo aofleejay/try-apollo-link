@@ -1,11 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { ApolloClient } from 'apollo-client'
-import { ApolloProvider
- } from 'react-apollo'
-import { HttpLink } from 'apollo-link-http'
+import { ApolloProvider } from 'react-apollo'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { ApolloLink } from 'apollo-link'
+import { HttpLink } from 'apollo-link-http'
+import { RestLink } from 'apollo-link-rest'
 import { withClientState } from 'apollo-link-state'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
@@ -35,10 +35,12 @@ const stateLink = withClientState({
   },
 })
 
-const httpLink = new HttpLink({ uri: process.env.REACT_APP_SERVICE_ENDPOINT })
+const RESTLink = new RestLink({ uri: process.env.REACT_APP_JSON_PLACEHOLDER_ENDPOINT })
+
+const httpLink = new HttpLink({ uri: process.env.REACT_APP_GRAPHQL_ENDPOINT })
 
 const client = new ApolloClient({
-  link: ApolloLink.from([logLink, stateLink, httpLink]),
+  link: ApolloLink.from([logLink, stateLink, RESTLink, httpLink]),
   cache,
 })
 
