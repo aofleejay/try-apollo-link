@@ -35,7 +35,12 @@ const stateLink = withClientState({
   },
 })
 
-const RESTLink = new RestLink({ uri: process.env.REACT_APP_JSON_PLACEHOLDER_ENDPOINT })
+const RESTLink = new RestLink({
+  endpoints: {
+    jsonPlaceholder: process.env.REACT_APP_JSON_PLACEHOLDER_ENDPOINT,
+    github: process.env.REACT_APP_GITHUB_API_ENDPOINT,
+  },
+})
 
 const httpLink = new HttpLink({ uri: process.env.REACT_APP_GRAPHQL_ENDPOINT })
 
