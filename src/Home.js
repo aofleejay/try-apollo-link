@@ -15,6 +15,9 @@ const Home = () => (
       <li>
         <Link to="/apollo-link-state">apollo-link-state</Link>
       </li>
+      <li>
+        <Link to="/apollo-link-error">apollo-link-error</Link>
+      </li>
     </ul>
   </div>
 )

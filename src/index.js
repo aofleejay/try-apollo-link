@@ -7,6 +7,7 @@ import { ApolloLink } from 'apollo-link'
 import { HttpLink } from 'apollo-link-http'
 import { RestLink } from 'apollo-link-rest'
 import { withClientState } from 'apollo-link-state'
+import { onError } from 'apollo-link-error'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 import {
@@ -47,10 +48,20 @@ const RESTLink = new RestLink({
   },
 })
 
+const errorLink = onError(({ graphQLErrors, networkError }) => {
+  if (graphQLErrors)
+    graphQLErrors.map(({ message, locations, path }) =>
+      console.log(
+        `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
+      )
+    )
+  if (networkError) console.log(`[Network error]: ${networkError}`)
+})
+
 const httpLink = new HttpLink({ uri: GRAPHQL_ENDPOINT })
 
 const client = new ApolloClient({
-  link: ApolloLink.from([logLink, stateLink, RESTLink, httpLink]),
+  link: ApolloLink.from([logLink, stateLink, RESTLink, errorLink, httpLink]),
   cache,
 })
 

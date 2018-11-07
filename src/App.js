@@ -4,6 +4,7 @@ import Home from './Home'
 import ApolloLinkHTTP from './ApolloLinkHTTP'
 import ApolloLinkREST from './ApolloLinkREST'
 import ApolloLinkState from './ApolloLinkState'
+import ApolloLinkError from './ApolloLinkError'
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
         <Route path="/apollo-link-http" component={ApolloLinkHTTP} />
         <Route path="/apollo-link-rest" component={ApolloLinkREST} />
         <Route path="/apollo-link-state" component={ApolloLinkState} />
+        <Route path="/apollo-link-error" component={ApolloLinkError} />
       </div>
     </BrowserRouter>
   )
