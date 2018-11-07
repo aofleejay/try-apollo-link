@@ -9,6 +9,11 @@ import { RestLink } from 'apollo-link-rest'
 import { withClientState } from 'apollo-link-state'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
+import {
+  GITHUB_API,
+  GRAPHQL_ENDPOINT,
+  JSON_PLACEHOLDER_API,
+} from './configs'
 
 const cache = new InMemoryCache()
 
@@ -37,12 +42,12 @@ const stateLink = withClientState({
 
 const RESTLink = new RestLink({
   endpoints: {
-    jsonPlaceholder: process.env.REACT_APP_JSON_PLACEHOLDER_ENDPOINT,
-    github: process.env.REACT_APP_GITHUB_API_ENDPOINT,
+    jsonPlaceholder: JSON_PLACEHOLDER_API,
+    github: GITHUB_API,
   },
 })
 
-const httpLink = new HttpLink({ uri: process.env.REACT_APP_GRAPHQL_ENDPOINT })
+const httpLink = new HttpLink({ uri: GRAPHQL_ENDPOINT })
 
 const client = new ApolloClient({
   link: ApolloLink.from([logLink, stateLink, RESTLink, httpLink]),
