@@ -1,6 +1,19 @@
 import React from 'react'
+import { ApolloClient } from 'apollo-client'
+import { InMemoryCache } from 'apollo-cache-inmemory'
+import { ApolloLink } from 'apollo-link'
+import { HttpLink } from 'apollo-link-http'
+import { RetryLink } from 'apollo-link-retry'
 import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
+
+const client = new ApolloClient({
+  link: ApolloLink.from([
+    new RetryLink(),
+    new HttpLink({ uri: 'non exist endpoint' }),
+  ]),
+  cache: new InMemoryCache(),
+})
 
 const NOT_WORKING_QUERY = gql`
   query notWorkingQuery {
@@ -12,7 +25,7 @@ const NOT_WORKING_QUERY = gql`
 
 const ApolloLinkRetry = () => {
   return (
-    <Query query={NOT_WORKING_QUERY}>
+    <Query query={NOT_WORKING_QUERY} client={client}>
       {({ loading }) => {
         if (loading) return 'Loading...'
 
