@@ -7,6 +7,9 @@ const Home = () => (
     <p>Repository for practice about apollo link.</p>
     <ul>
       <li>
+        <Link to="/apollo-link">apollo-link</Link>
+      </li>
+      <li>
         <Link to="/apollo-link-http">apollo-link-http</Link>
       </li>
       <li>

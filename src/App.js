@@ -1,6 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Route, Link } from 'react-router-dom'
 import Home from './Home'
+import ApolloLink from './ApolloLink'
 import ApolloLinkHTTP from './ApolloLinkHTTP'
 import ApolloLinkREST from './ApolloLinkREST'
 import ApolloLinkState from './ApolloLinkState'
@@ -20,6 +21,7 @@ const App = () => {
           </ul>
         </nav>
         <Route path="/" exact component={Home} />
+        <Route path="/apollo-link" component={ApolloLink} />
         <Route path="/apollo-link-http" component={ApolloLinkHTTP} />
         <Route path="/apollo-link-rest" component={ApolloLinkREST} />
         <Route path="/apollo-link-state" component={ApolloLinkState} />
