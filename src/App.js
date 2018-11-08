@@ -6,6 +6,7 @@ import ApolloLinkREST from './ApolloLinkREST'
 import ApolloLinkState from './ApolloLinkState'
 import ApolloLinkError from './ApolloLinkError'
 import ApolloLinkRetry from './ApolloLinkRetry'
+import ApolloLinkBatchHTTP from './ApolloLinkBatchHTTP'
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="/apollo-link-state" component={ApolloLinkState} />
         <Route path="/apollo-link-error" component={ApolloLinkError} />
         <Route path="/apollo-link-retry" component={ApolloLinkRetry} />
+        <Route path="/apollo-link-batch-http" component={ApolloLinkBatchHTTP} />
       </div>
     </BrowserRouter>
   )

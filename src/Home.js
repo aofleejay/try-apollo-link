@@ -21,6 +21,9 @@ const Home = () => (
       <li>
         <Link to="/apollo-link-retry">apollo-link-retry</Link>
       </li>
+      <li>
+        <Link to="/apollo-link-batch-http">apollo-link-batch-http</Link>
+      </li>
     </ul>
   </div>
 )
