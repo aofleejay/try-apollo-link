@@ -35,7 +35,7 @@ const GET_POSTS = gql`
 const ApolloLinkComponent = () => {
   return (
     <div>
-      <h2>apollo-link-http</h2>
+      <h2>apollo-link</h2>
       <Query query={GET_POSTS} client={client}>
         {({ data: { allPosts }, loading, error }) => {
           if (loading) return 'Loading...'
