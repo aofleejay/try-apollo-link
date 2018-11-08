@@ -7,11 +7,12 @@ import { RetryLink } from 'apollo-link-retry'
 import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
 
+const retryLink = new RetryLink()
+
+const httpLink = new HttpLink({ uri: 'non exist endpoint' })
+
 const client = new ApolloClient({
-  link: ApolloLink.from([
-    new RetryLink(),
-    new HttpLink({ uri: 'non exist endpoint' }),
-  ]),
+  link: ApolloLink.from([retryLink, httpLink]),
   cache: new InMemoryCache(),
 })
 
