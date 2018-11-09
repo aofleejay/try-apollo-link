@@ -6,7 +6,7 @@ import { Query, ApolloProvider } from 'react-apollo'
 import gql from 'graphql-tag'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { GRAPHQL_ENDPOINT } from './configs'
-import { SETUP_APOLLO_BATCH_HTTP, APOLLO_BATCH_HTTP_COMPONENT } from './constants'
+import { APOLLO_BATCH_HTTP_SETUP, APOLLO_BATCH_HTTP_COMPONENT } from './constants'
 
 const batchLink = new BatchHttpLink({
   uri: GRAPHQL_ENDPOINT,
@@ -47,7 +47,7 @@ const ApolloLinkBatchHTTP = () => {
         <h2>Usage</h2>
         <p>Apollo client setup with batch request.</p>
         <SyntaxHighlighter language='javascript'>
-          {SETUP_APOLLO_BATCH_HTTP}
+          {APOLLO_BATCH_HTTP_SETUP}
         </SyntaxHighlighter>
         <p>We have two request 'getPosts' and 'getComments'.</p>
         <SyntaxHighlighter language='javascript'>

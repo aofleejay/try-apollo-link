@@ -1,4 +1,4 @@
-const SETUP_APOLLO_LINK = `import { ApolloClient } from 'apollo-client'
+const APOLLO_LINK_SETUP = `import { ApolloClient } from 'apollo-client'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { ApolloLink } from 'apollo-link'
 import { HttpLink } from 'apollo-link-http'
@@ -47,7 +47,7 @@ const App = () => (
   </Query>
 )`
 
-const SETUP_APOLLO_BATCH_HTTP = `import { ApolloClient } from 'apollo-client'
+const APOLLO_BATCH_HTTP_SETUP = `import { ApolloClient } from 'apollo-client'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { BatchHttpLink } from 'apollo-link-batch-http'
 
@@ -168,9 +168,9 @@ const App = () => (
 )`
 
 export {
-  SETUP_APOLLO_LINK,
+  APOLLO_LINK_SETUP,
   APOLLO_LINK_COMPONENT,
-  SETUP_APOLLO_BATCH_HTTP,
+  APOLLO_BATCH_HTTP_SETUP,
   APOLLO_BATCH_HTTP_COMPONENT,
   APOLLO_LINK_ERROR_SETUP,
   APOLLO_LINK_ERROR_COMPONENT,

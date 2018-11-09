@@ -7,7 +7,7 @@ import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { GRAPHQL_ENDPOINT } from './configs'
-import { SETUP_APOLLO_LINK, APOLLO_LINK_COMPONENT } from './constants'
+import { APOLLO_LINK_SETUP, APOLLO_LINK_COMPONENT } from './constants'
 
 const logLink = new ApolloLink((operation , forward) => {
   console.log(`Starting request for ${operation.operationName}.`)
@@ -42,7 +42,7 @@ const ApolloLinkComponent = () => {
       <h2>Example usage</h2>
       <p>Log before and after request by setup apollo client like so.</p>
       <SyntaxHighlighter language='javascript'>
-        {SETUP_APOLLO_LINK}
+        {APOLLO_LINK_SETUP}
       </SyntaxHighlighter>
       <p>Component code.</p>
       <SyntaxHighlighter language='javascript'>
