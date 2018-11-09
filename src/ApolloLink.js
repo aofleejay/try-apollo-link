@@ -5,7 +5,9 @@ import { ApolloLink } from 'apollo-link'
 import { HttpLink } from 'apollo-link-http'
 import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
+import SyntaxHighlighter from 'react-syntax-highlighter'
 import { GRAPHQL_ENDPOINT } from './configs'
+import { SETUP_APOLLO_LINK, APOLLO_LINK_COMPONENT } from './constants'
 
 const logLink = new ApolloLink((operation , forward) => {
   console.log(`Starting request for ${operation.operationName}.`)
@@ -35,7 +37,19 @@ const GET_POSTS = gql`
 const ApolloLinkComponent = () => {
   return (
     <div>
-      <h2>apollo-link</h2>
+      <h1>apollo-link</h1>
+      <p>Use apollo-link modify request and response link middleware and afterware.</p>
+      <h2>Example usage</h2>
+      <p>Log before and after request by setup apollo client like so.</p>
+      <SyntaxHighlighter language='javascript'>
+        {SETUP_APOLLO_LINK}
+      </SyntaxHighlighter>
+      <p>Component code.</p>
+      <SyntaxHighlighter language='javascript'>
+        {APOLLO_LINK_COMPONENT}
+      </SyntaxHighlighter>
+      <h2>Result</h2>
+      <p>Open browser console to see apollo-link log.</p>
       <Query query={GET_POSTS} client={client}>
         {({ data: { allPosts }, loading, error }) => {
           if (loading) return 'Loading...'
@@ -43,11 +57,7 @@ const ApolloLinkComponent = () => {
 
           return (
             <div>
-              {allPosts.map((post) => {
-                return (
-                  <p key={post.id}>{post.description}</p>
-                )
-              })}
+              {allPosts.map(({ id, imageUrl, description }) => <img key={id} src={imageUrl} alt={description} /> )}
             </div>
           )
         }}
