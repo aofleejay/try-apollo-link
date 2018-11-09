@@ -6,14 +6,14 @@ import { HttpLink } from 'apollo-link-http'
 import { onError } from 'apollo-link-error'
 import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
+import SyntaxHighlighter from 'react-syntax-highlighter'
 import { GRAPHQL_ENDPOINT } from './configs'
+import { APOLLO_LINK_ERROR_SETUP, APOLLO_LINK_ERROR_COMPONENT } from './constants'
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors)
-    graphQLErrors.map(({ message, locations, path }) =>
-      console.log(
-        `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
-      )
+    graphQLErrors.map(({ message, locations, path }) => 
+      console.log(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`)
     )
   if (networkError) console.log(`[Network error]: ${networkError}`)
 })
@@ -41,8 +41,19 @@ const ApolloLinkError = () => {
 
         return (
           <div>
-            <h2>apollo-link-error</h2>
-            <p>Open console to see an error from apollo-link-error.</p>
+            <h1>apollo-link-error</h1>
+            <p>Handle error for GraphQL error and network error.</p>
+            <h2>Usage</h2>
+            <p>Apollo client setup.</p>
+            <SyntaxHighlighter language='javascript'>
+              {APOLLO_LINK_ERROR_SETUP}
+            </SyntaxHighlighter>
+            <p>Component with not working query.</p>
+            <SyntaxHighlighter language='javascript'>
+              {APOLLO_LINK_ERROR_COMPONENT}
+            </SyntaxHighlighter>
+            <h2>Result</h2>
+            <p>Open browser console to see an error from apollo-link-error.</p>
           </div>
         )
       }}
